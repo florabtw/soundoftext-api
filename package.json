@@ -1,0 +1,17 @@
+{
+  "name": "soundoftext-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "develop": "DEBUG=soundoftext-api:* & npm start"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  }
+}
