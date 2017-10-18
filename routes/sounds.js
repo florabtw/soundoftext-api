@@ -10,6 +10,11 @@ router.post('/', function(req, res, next) {
   // assert req.body.voice exists
   // custom error message if not exists
 
+  if (!req.body.data) {
+    res.locals.errorMessage = "Missing value for 'data'. See documentation.";
+    return next();
+  }
+
   const body = req.body;
 
   const sound = new Sound({

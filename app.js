@@ -32,4 +32,15 @@ app.use('/', function(req, res, next) {
 
 app.use('/sounds', require('./routes/sounds'));
 
+app.use('/', function(req, res) {
+  if (res.locals.errorMessage) {
+    return res.status(400).json({
+      success: false,
+      message: res.locals.errorMessage
+    });
+  }
+
+  next();
+});
+
 module.exports = app;
