@@ -4,14 +4,18 @@ const express = require('express'),
   Sound       = require('../models/sound.js');
 
 router.post('/', function(req, res, next) {
-  // TODO
-  // assert req.body exists
-  // assert req.body.text exists
-  // assert req.body.voice exists
-  // custom error message if not exists
-
   if (!req.body.data) {
     res.locals.errorMessage = "Missing value for 'data'. See documentation.";
+    return next();
+  }
+
+  if (!req.body.data.text) {
+    res.locals.errorMessage = "Missing value for 'text'. See documentation.";
+    return next();
+  }
+
+  if (!req.body.data.voice) {
+    res.locals.errorMessage = "Missing value for 'voice'. See documentation.";
     return next();
   }
 
