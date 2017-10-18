@@ -19,6 +19,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', function(req, res, next) {
+  if (req.method == 'POST' && !req.is('json')) {
+    return res.status(400).json({
+      success: false,
+      message: "Expected JSON body. Please use content-type 'application/json'."
+    });
+  }
+
+  next();
+});
+
 app.use('/sounds', require('./routes/sounds'));
 
 module.exports = app;
