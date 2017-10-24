@@ -26,23 +26,16 @@ router.post('/', function(req, res, next) {
     voice: body.data.voice
   });
 
-  sound.save()
-    .then(instance => {
-      res.json({
-        success: true,
-        id: instance.id
-      });
-    }).catch(error => {
-      // TODO
-      // What if text is empty?
-      // What if voice is empty?
-      console.error(error);
+  sound.save().then(instance => {
+    res.json({ success: true, id: instance.id });
+  }).catch(error => {
+    console.error(error);
 
-      res.json({
-        success: false,
-        message: 'something bad happened'
-      });
+    res.json({
+      success: false,
+      message: error.message
     });
+  });
 });
 
 module.exports = router;

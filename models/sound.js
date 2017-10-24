@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
   Schema   = mongoose.Schema,
-  ObjectId = Schema.ObjectId;
+  ObjectId = Schema.ObjectId,
+  voices = require('../helpers/voices.js');
 
 const soundSchema = new Schema({
   accessed: {
@@ -18,7 +19,10 @@ const soundSchema = new Schema({
     default: ['Pending']
   },
   text: String,
-  voice: String
+  voice: {
+    type: String,
+    enum: voices.keys
+  }
 });
 
 module.exports = mongoose.model('Sound', soundSchema);
