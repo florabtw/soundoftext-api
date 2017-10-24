@@ -1,7 +1,9 @@
 const mongoose = require('mongoose'),
   Schema   = mongoose.Schema,
   ObjectId = Schema.ObjectId,
-  voices = require('../helpers/voices.js');
+  voices = require('../helpers/voices.js'),
+  tts = require('google-tts-api'),
+  downloadSound = require('../helpers/soundManager.js').downloadSound;
 
 const soundSchema = new Schema({
   accessed: {
@@ -24,5 +26,19 @@ const soundSchema = new Schema({
     enum: voices.keys
   }
 });
+
+soundSchema.methods.download = function(cb) {
+  tts(this.text, this.voice).then(url => {
+    return downloadSound(this, url);
+  }).then(path => {
+    this.set({ path: path, status: 'Done' });
+    return this.save();
+  }).catch(error => {
+    // TODO
+    // What if download fails?
+    // What if db validation fails? Can it fail?
+    console.error(error);
+  });
+};
 
 module.exports = mongoose.model('Sound', soundSchema);
