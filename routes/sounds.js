@@ -41,4 +41,21 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+  Sound.findById(req.params.id).then(sound => {
+    const responseBody = { status: sound.status };
+
+    if (sound.status == 'Done') {
+      responseBody.location = sound.path;
+    } else if (sound.status == 'Error') {
+      responseBody.message = 'Failed to create audio file. Please send me an email if problem persists.';
+    }
+
+    res.json(responseBody);
+  }).catch(error => {
+    res.locals.errorMessage = `No sound was found with id "${req.params.id}".`;
+    next();
+  });
+});
+
 module.exports = router;
