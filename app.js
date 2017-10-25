@@ -39,8 +39,6 @@ app.use('/', function(req, res) {
       message: res.locals.errorMessage
     });
   }
-
-  next();
 });
 
 module.exports = app;
