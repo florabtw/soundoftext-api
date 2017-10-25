@@ -26,23 +26,18 @@ router.post('/', function(req, res, next) {
     voice: body.data.voice
   });
 
-  const soundSaved = sound.save().then(sound => {
+  sound.save().then(sound => {
     res.json({ success: true, id: sound.id });
 
     return sound;
-  });
-
-  soundSaved.catch(error => {
-    console.error(error);
-
-    res.json({
-      success: false,
-      message: error.message
-    });
-  });
-
-  soundSaved.then(sound => {
+  }).then(sound => {
     sound.download();
+  }).catch(error => {
+    console.error(error);
+    console.error('Request Body: ' + JSON.stringify(req.body));
+
+    res.locals.errorMessage = error.message;
+    next();
   });
 });
 

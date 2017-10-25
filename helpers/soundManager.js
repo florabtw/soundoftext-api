@@ -1,11 +1,11 @@
 const request = require('request'),
   fs = require('fs');
 
-const SOUNDS_PATH = 'public/sounds/';
+const SOUNDS_PATH = 'public/sounds';
 
 function downloadSound(sound, url) {
   return new Promise(function(resolve, reject) {
-    const filePath = SOUNDS_PATH + `${sound.voice}/${sound.text}.mp3`
+    const filePath = `${SOUNDS_PATH}/${sound.voice}/${sound.text}.mp3`
     const fileStream = fs.createWriteStream(filePath);
 
     const requestOpts = {
@@ -13,13 +13,11 @@ function downloadSound(sound, url) {
       headers: { 'User-Agent': 'SoundOfTextBot (soundoftext.com)' }
     };
 
-    // TODO
-    // Test these errors
     request(requestOpts)
-      .on('error', e => { console.error(e); reject(e); })
+      .on('error', e => reject(e))
       .pipe(fileStream)
-      .on('finish', () => { resolve(filePath); })
-      .on('error', e => { console.error(e); reject(e); });
+      .on('finish', () => resolve(filePath))
+      .on('error', e => reject(e));
   });
 }
 
