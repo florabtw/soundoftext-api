@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-  Schema   = mongoose.Schema,
+  Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId,
   voices = require('../helpers/voices.js'),
   tts = require('google-tts-api'),
@@ -28,18 +28,21 @@ const soundSchema = new Schema({
 });
 
 soundSchema.methods.download = function(cb) {
-  return tts(this.text, this.voice).then(url => {
-    return downloadSound(this, url);
-  }).then(path => {
-    this.set({ path: path, status: 'Done' });
-    return this.save();
-  }).catch(error => {
-    console.error(error);
-    console.error('Sound: ' + this);
+  return tts(this.text, this.voice)
+    .then(url => {
+      return downloadSound(this, url);
+    })
+    .then(path => {
+      this.set({ path: path, status: 'Done' });
+      return this.save();
+    })
+    .catch(error => {
+      console.error(error);
+      console.error('Sound: ' + this);
 
-    this.set({ status: 'Error' });
-    return this.save();
-  });
+      this.set({ status: 'Error' });
+      return this.save();
+    });
 };
 
 module.exports = mongoose.model('Sound', soundSchema);

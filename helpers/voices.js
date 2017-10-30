@@ -1,3 +1,4 @@
+// prettier-ignore
 const voices = [
   { key: "af-ZA", value: "Afrikaans" },
   { key: "sq",    value: "Albanian" },
@@ -61,4 +62,4 @@ module.exports = {
   keys: voices.map(v => v.key),
   lookupVoice: lookupVoice,
   voices: voices
-}
+};
