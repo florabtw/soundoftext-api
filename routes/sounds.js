@@ -1,7 +1,8 @@
 const express = require('express'),
   router      = express.Router(),
   uuid        = require('uuid/v1'),
-  Sound       = require('../models/sound.js');
+  Sound       = require('../models/sound.js'),
+  config      = require('../config/config');
 
 router.post('/', function(req, res, next) {
   if (!req.body.data) {
@@ -46,7 +47,7 @@ router.get('/:id', function(req, res, next) {
     const responseBody = { status: sound.status };
 
     if (sound.status == 'Done') {
-      responseBody.location = sound.path;
+      responseBody.location = `${config.soundsUrl}/${sound.path}`;
     } else if (sound.status == 'Error') {
       responseBody.message = 'Failed to create audio file. Please send me an email if problem persists.';
     }

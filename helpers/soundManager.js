@@ -5,7 +5,8 @@ const SOUNDS_PATH = 'public/sounds';
 
 function downloadSound(sound, url) {
   return new Promise(function(resolve, reject) {
-    const filePath = `${SOUNDS_PATH}/${sound.voice}/${sound.text}.mp3`
+    const soundPath = `${sound.voice}/${sound.text}.mp3`;
+    const filePath = `${SOUNDS_PATH}/${soundPath}`;
     const fileStream = fs.createWriteStream(filePath);
 
     const requestOpts = {
@@ -16,7 +17,7 @@ function downloadSound(sound, url) {
     request(requestOpts)
       .on('error', e => reject(e))
       .pipe(fileStream)
-      .on('finish', () => resolve(filePath))
+      .on('finish', () => resolve(soundPath))
       .on('error', e => reject(e));
   });
 }
