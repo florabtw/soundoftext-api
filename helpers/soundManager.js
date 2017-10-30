@@ -1,12 +1,16 @@
 const request = require('request'),
-  fs = require('fs');
+  fs          = require('fs'),
+  sanitize    = require('sanitize-filename');
 
 const SOUNDS_PATH = 'public/sounds';
 
 function downloadSound(sound, url) {
   return new Promise(function(resolve, reject) {
-    const soundPath = `${sound.voice}/${sound.text}.mp3`;
-    const filePath = `${SOUNDS_PATH}/${soundPath}`;
+    const safeSoundText  = sanitize(sound.text);
+    const safeSoundVoice = sanitize(sound.voice);
+
+    const soundPath  = `${safeSoundVoice}/${safeSoundText}.mp3`;
+    const filePath   = `${SOUNDS_PATH}/${soundPath}`;
     const fileStream = fs.createWriteStream(filePath);
 
     const requestOpts = {

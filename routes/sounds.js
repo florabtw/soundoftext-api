@@ -2,7 +2,8 @@ const express = require('express'),
   router      = express.Router(),
   uuid        = require('uuid/v1'),
   Sound       = require('../models/sound.js'),
-  config      = require('../config/config');
+  config      = require('../config/config'),
+  sanitize    = require('sanitize-filename');
 
 router.post('/', function(req, res, next) {
   if (!req.body.data) {
