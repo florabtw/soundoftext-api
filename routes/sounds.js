@@ -47,7 +47,10 @@ router.get('/:id', function(req, res, next) {
     const responseBody = { status: sound.status };
 
     if (sound.status == 'Done') {
-      responseBody.location = `${config.soundsUrl}/${sound.path}`;
+      const soundUrl = `${config.soundsUrl}/${sound.path}`;
+      const safeSoundUrl = encodeURI(soundUrl);
+
+      responseBody.location = safeSoundUrl;
     } else if (sound.status == 'Error') {
       responseBody.message = 'Failed to create audio file. Please send me an email if problem persists.';
     }
