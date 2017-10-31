@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "develop": "DEBUG=soundoftext-api:* NODE_ENV=dev npm start",
+    "develop": "DEBUG=soundoftext-api:* PORT=9000 NODE_ENV=dev npm start",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
     "start": "node ./bin/www"

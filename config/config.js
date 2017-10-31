@@ -5,7 +5,7 @@ const config = {
     soundsUrl: 'http://beta.soundoftext.com/public/sounds'
   },
   dev: {
-    soundsUrl: 'http://192.168.1.45:3000/public/sounds'
+    soundsUrl: 'http://192.168.1.45:9000/public/sounds'
   }
 };
 
