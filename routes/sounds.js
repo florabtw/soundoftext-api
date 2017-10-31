@@ -22,20 +22,21 @@ router.post('/', function(req, res, next) {
 
   const body = req.body;
 
-  const sound = new Sound({
+  const sound = Sound.findOrCreate({
     text: body.data.text,
     voice: body.data.voice
   });
 
   sound
-    .save()
     .then(sound => {
       res.json({ success: true, id: sound.id });
 
       return sound;
     })
     .then(sound => {
-      sound.download();
+      if (sound.status != 'Done') {
+        return sound.download();
+      }
     })
     .catch(error => {
       console.error(error);

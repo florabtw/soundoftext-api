@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
   tts = require('google-tts-api'),
   downloadSound = require('../helpers/soundManager.js').downloadSound;
 
-const soundSchema = new Schema({
+const SoundSchema = new Schema({
   accessed: {
     type: Date,
     default: Date.now
@@ -27,7 +27,20 @@ const soundSchema = new Schema({
   }
 });
 
-soundSchema.methods.download = function(cb) {
+SoundSchema.statics.DONE = 'Done';
+SoundSchema.statics.PENDING = 'Pending';
+SoundSchema.statics.ERROR = 'Error';
+
+SoundSchema.statics.findOrCreate = function(props) {
+  return this.findOne(props).then(sound => {
+    if (sound == null) {
+      return this.create(props);
+    }
+    return sound;
+  });
+};
+
+SoundSchema.methods.download = function(cb) {
   return tts(this.text, this.voice)
     .then(url => {
       return downloadSound(this, url);
@@ -45,4 +58,4 @@ soundSchema.methods.download = function(cb) {
     });
 };
 
-module.exports = mongoose.model('Sound', soundSchema);
+module.exports = mongoose.model('Sound', SoundSchema);
