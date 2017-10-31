@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/soundoftext', { useMongoClient: true });
 
 // uncomment after placing your favicon in /public
