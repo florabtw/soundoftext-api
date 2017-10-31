@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "develop": "DEBUG=soundoftext-api:* PORT=9000 NODE_ENV=dev npm start",
+    "develop": "DEBUG=soundoftext-api:* PORT=9000 NODE_ENV=dev nodemon ./bin/www",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
     "start": "node ./bin/www"
@@ -17,6 +17,7 @@
     "google-tts-api": "^0.0.2",
     "mongoose": "^4.12.3",
     "morgan": "~1.9.0",
+    "nodemon": "^1.12.1",
     "request": "^2.83.0",
     "sanitize-filename": "^1.6.1",
     "serve-favicon": "~2.4.5",
