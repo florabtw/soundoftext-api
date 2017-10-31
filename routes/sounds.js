@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
       return sound;
     })
     .then(sound => {
-      if (sound.status != 'Done') {
+      if (sound.status != Sound.DONE) {
         return sound.download();
       }
     })
@@ -52,12 +52,12 @@ router.get('/:id', function(req, res, next) {
     .then(sound => {
       const responseBody = { status: sound.status };
 
-      if (sound.status == 'Done') {
+      if (sound.status == Sound.DONE) {
         const soundUrl = `${config.soundsUrl}/${sound.path}`;
         const safeSoundUrl = encodeURI(soundUrl);
 
         responseBody.location = safeSoundUrl;
-      } else if (sound.status == 'Error') {
+      } else if (sound.status == Sound.ERROR) {
         responseBody.message =
           'Failed to create audio file. Please send me an email if problem persists.';
       }
