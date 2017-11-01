@@ -21,6 +21,7 @@
     "request": "^2.83.0",
     "sanitize-filename": "^1.6.1",
     "serve-favicon": "~2.4.5",
+    "stripe": "^5.3.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {

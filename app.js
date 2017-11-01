@@ -34,6 +34,7 @@ app.use('/', function(req, res, next) {
 });
 
 app.use('/sounds', require('./routes/sounds'));
+app.use('/donations', require('./routes/donations'));
 
 app.use('/', function(req, res) {
   if (res.locals.errorMessage) {
