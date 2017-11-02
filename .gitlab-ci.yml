@@ -10,6 +10,18 @@ before_script:
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
 
+deploy-staging:
+  stage: deploy
+  script:
+    - echo "Deploying to staging server"
+    - scp bin/deploy gitlab@staging.soundoftext.com:~/
+    - ssh gitlab@staging.soundoftext.com "/bin/bash deploy"
+  environment:
+    name: staging
+    url: http://staging.soundoftext.com
+  only:
+    - development
+
 deploy_production:
   stage: deploy
   script:

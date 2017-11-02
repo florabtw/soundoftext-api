@@ -8,4 +8,4 @@ git clone git@gitlab.com:2pool/soundoftext-api.git
 
 cd soundoftext-api && yarn
 
-pm2 restart soundoftext-production
+pm2 restart soundoftext
