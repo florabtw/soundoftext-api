@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "develop": "DEBUG=soundoftext-api:* PORT=9000 NODE_ENV=dev nodemon ./bin/www",
+    "develop": "nodemon bin/www",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
-    "start": "node ./bin/www"
+    "start": "node bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

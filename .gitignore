@@ -31,3 +31,6 @@ npm-debug.log
 
 # MP3 Files
 public/sounds/*
+
+# Environment Script
+bin/environment.sh
