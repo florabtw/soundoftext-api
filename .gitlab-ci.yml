@@ -1,0 +1,23 @@
+image: ruby:2.1
+
+stages:
+  - deploy
+
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
+
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Deploying to production server"
+    - scp bin/deploy gitlab@production.soundoftext.com:~/
+    - ssh gitlab@production.soundoftext.com "/bin/bash deploy"
+  environment:
+    name: production
+    url: http://production.soundoftext.com
+  only:
+    - master
