@@ -1,8 +1,9 @@
 const express = require('express'),
   router = express.Router(),
   uuid = require('uuid/v1'),
-  Sound = require('../models/sound.js'),
-  config = require('../config/config');
+  SoundRequest = require('../models/soundRequest.js'),
+  config = require('../config/config'),
+  storage = require('../helpers/storage.js');
 
 router.post('/', function(req, res, next) {
   if (!req.body.data) {
@@ -20,23 +21,13 @@ router.post('/', function(req, res, next) {
     return next();
   }
 
-  const body = req.body;
+  const data = req.body.data;
 
-  const sound = Sound.findOrCreate({
-    text: body.data.text,
-    voice: body.data.voice
-  });
+  SoundRequest.findOrCreate({ text: data.text, voice: data.voice })
+    .then(soundRequest => {
+      res.json({ success: true, id: soundRequest.id });
 
-  sound
-    .then(sound => {
-      res.json({ success: true, id: sound.id });
-
-      return sound;
-    })
-    .then(sound => {
-      if (sound.status != Sound.DONE) {
-        return sound.download();
-      }
+      storage.create(soundRequest);
     })
     .catch(error => {
       console.error(error);
@@ -48,27 +39,31 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  Sound.findById(req.params.id)
-    .then(sound => {
-      const responseBody = { status: sound.status };
-
-      if (sound.status == Sound.DONE) {
-        const soundUrl = `${config.soundsUrl}/${sound.path}`;
-        const safeSoundUrl = encodeURI(soundUrl);
-
-        responseBody.location = safeSoundUrl;
-      } else if (sound.status == Sound.ERROR) {
-        responseBody.message =
-          'Failed to create audio file. Please send me an email if problem persists.';
-      }
-
-      res.json(responseBody);
+  lookupSound(req.params.id)
+    .then(response => {
+      res.json(response);
     })
     .catch(error => {
-      res.locals.errorMessage = `No sound was found with id "${req.params
-        .id}".`;
+      res.locals.errorMessage = error.message;
       next();
     });
 });
+
+async function lookupSound(soundId) {
+  const sound = await storage.lookup(soundId);
+
+  if (sound) {
+    return { status: SoundRequest.DONE, location: sound.location };
+  }
+
+  const soundRequest = await SoundRequest.findById(soundId);
+
+  if (soundRequest) {
+    const { status, message } = soundRequest;
+    return { status, message };
+  }
+
+  throw new Error(`Could not find Sound with id ${soundId}`);
+}
 
 module.exports = router;
