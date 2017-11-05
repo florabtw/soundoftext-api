@@ -15,6 +15,24 @@ const bucket = new aws.S3({
   params: { Bucket: 'soundoftext' }
 });
 
+/**
+ * Create Sound file from request.
+ * Will not continue if request has already been fulfilled.
+ *
+ * Returns Null
+ */
+function createSound(soundRequest) {
+  const fileName = `${soundRequest.id}.mp3`;
+
+  lookupSound(soundRequest.id).then(location => {
+    if (location) {
+      return;
+    }
+
+    create(soundRequest);
+  });
+}
+
 function create(soundRequest) {
   const fileName = `${soundRequest.id}.mp3`;
 
@@ -79,7 +97,12 @@ function upload(stream, fileName) {
   });
 }
 
-function lookup(soundId) {
+/**
+ * Find public URL for Sound if it exists.
+ *
+ * Returns Promise<String|Void>
+ */
+function lookupSound(soundId) {
   const fileName = `${soundId}.mp3`;
 
   const options = {
@@ -95,13 +118,13 @@ function lookup(soundId) {
           resolve();
         }
 
-        resolve({ location: `https://${options.hostname}${options.path}` });
+        resolve(`https://${options.hostname}${options.path}`);
       })
       .on('error', error => resolve());
   });
 }
 
 module.exports = {
-  create,
-  lookup
+  createSound,
+  lookupSound
 };

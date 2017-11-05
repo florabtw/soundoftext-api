@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
     .then(soundRequest => {
       res.json({ success: true, id: soundRequest.id });
 
-      storage.create(soundRequest);
+      storage.createSound(soundRequest);
     })
     .catch(error => {
       console.error(error);
@@ -50,10 +50,10 @@ router.get('/:id', function(req, res, next) {
 });
 
 async function lookupSound(soundId) {
-  const sound = await storage.lookup(soundId);
+  const publicUrl = await storage.lookupSound(soundId);
 
-  if (sound) {
-    return { status: SoundRequest.DONE, location: sound.location };
+  if (publicUrl) {
+    return { status: SoundRequest.DONE, location: publicUrl };
   }
 
   const soundRequest = await SoundRequest.findById(soundId);
