@@ -2,9 +2,9 @@
 
 source ~/.nvm/nvm.sh
 
-cd soundoftext-api
+git clone git@gitlab.com:2pool/soundoftext-api.git
 
-git pull
+cd soundoftext-api
 
 yarn
 
