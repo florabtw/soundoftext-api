@@ -85,7 +85,7 @@ function downloadFile(url) {
 
 function upload(stream, soundRequest) {
   const key = `${soundRequest.id}.mp3`;
-  const contentDisposition = `attachment; filename=${soundRequest.text}.mp3`;
+  const contentDisposition = `attachment; filename="${soundRequest.text}.mp3"`;
 
   return new Promise((resolve, reject) => {
     bucket.upload(

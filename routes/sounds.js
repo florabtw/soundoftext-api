@@ -3,7 +3,8 @@ const express = require('express'),
   uuid = require('uuid/v1'),
   SoundRequest = require('../models/soundRequest.js'),
   config = require('../config/config'),
-  storage = require('../helpers/storage.js');
+  storage = require('../helpers/storage.js'),
+  sanitize = require('../helpers/sanitize.js');
 
 router.post('/', function(req, res, next) {
   if (!req.body.data) {
@@ -22,8 +23,10 @@ router.post('/', function(req, res, next) {
   }
 
   const data = req.body.data;
+  const safeText = sanitize(data.text);
+  const safeVoice = sanitize(data.voice);
 
-  SoundRequest.findOrCreate({ text: data.text, voice: data.voice })
+  SoundRequest.findOrCreate({ text: safeText, voice: safeVoice })
     .then(soundRequest => {
       res.json({ success: true, id: soundRequest.id });
 
