@@ -34,11 +34,9 @@ function createSound(soundRequest) {
 }
 
 function create(soundRequest) {
-  const fileName = `${soundRequest.id}.mp3`;
-
   return download(soundRequest)
     .then(stream => {
-      return upload(stream, fileName);
+      return upload(stream, soundRequest);
     })
     .then(() => {
       soundRequest.set({ status: SoundRequest.DONE });
@@ -85,10 +83,18 @@ function downloadFile(url) {
   });
 }
 
-function upload(stream, fileName) {
+function upload(stream, soundRequest) {
+  const key = `${soundRequest.id}.mp3`;
+  const contentDisposition = `attachment; filename=${soundRequest.text}.mp3`;
+
   return new Promise((resolve, reject) => {
     bucket.upload(
-      { Key: fileName, Body: stream, ACL: 'public-read' },
+      {
+        ACL: 'public-read',
+        Body: stream,
+        ContentDisposition: contentDisposition,
+        Key: key
+      },
       (err, data) => {
         if (err) reject(err);
         resolve();
