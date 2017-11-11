@@ -21,6 +21,9 @@ router.post('/', function(req, res) {
     },
     function(err, charge) {
       if (err) {
+        console.error('Donation Error');
+        console.error(err);
+
         res.status(500).json({ success: false, error: err });
         return;
       }
