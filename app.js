@@ -5,7 +5,11 @@ const express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  winston = require('winston');
+
+winston.remove(winston.transports.Console);
+winston.add(winston.transports.Console, { timestamp: true, showLevel: false });
 
 const app = express();
 

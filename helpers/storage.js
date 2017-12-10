@@ -1,6 +1,8 @@
 const tts = require('google-tts-api'),
   aws = require('aws-sdk'), // actually digitalocean spaces
   http = require('https'),
+  logger = require('winston'),
+  URL = require('url').URL,
   SoundRequest = require('../models/soundRequest.js');
 
 aws.config.update({
@@ -43,8 +45,10 @@ function create(soundRequest) {
       return soundRequest.save();
     })
     .catch(error => {
-      console.error(error);
-      console.error('Request: ' + soundRequest);
+      logger.error(
+        `Request could not be fulfilled: { text: ${soundRequest.text}, id: ${soundRequest.id} }`
+      );
+      logger.error(error);
 
       soundRequest.set({
         message: error.message,
@@ -68,9 +72,17 @@ async function download(soundRequest) {
 }
 
 function downloadFile(url) {
+  const { host, pathname, search } = new URL(url);
+
+  const options = {
+    host: host,
+    path: pathname + search,
+    timeout: 10000
+  };
+
   return new Promise((resolve, reject) => {
     http
-      .get(url, res => {
+      .get(options, res => {
         if (res.statusCode >= 300) {
           reject(new Error(`Status Code ${res.statusCode} retrieving ${url}`));
         }
@@ -128,7 +140,9 @@ function lookupSound(soundId) {
 
         resolve(`https://${options.hostname}${options.path}`);
       })
-      .on('error', error => resolve());
+      .on('error', error => {
+        resolve();
+      });
   });
 }
 
