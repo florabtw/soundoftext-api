@@ -1,7 +1,8 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   voices = require('../helpers/voices.js'),
-  uuid = require('uuid');
+  uuid = require('uuid'),
+  logger = require('winston');
 
 const SoundRequestSchema = new Schema({
   created: {
@@ -36,6 +37,16 @@ SoundRequestSchema.statics.findOrCreate = function(props) {
   });
 };
 
-SoundRequestSchema.index({ voice: 1, text: 1 });
+SoundRequestSchema.index({ text: 'hashed' });
 
-module.exports = mongoose.model('SoundRequest', SoundRequestSchema);
+const SoundRequest = mongoose.model('SoundRequest', SoundRequestSchema);
+
+SoundRequest.on('index', error => {
+  if (error) {
+    logger.error('Failed to index Sound Requests. Message: ' + error.message);
+  } else {
+    logger.info('Indexed Sound Requests!');
+  }
+});
+
+module.exports = SoundRequest;
