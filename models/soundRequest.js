@@ -36,4 +36,6 @@ SoundRequestSchema.statics.findOrCreate = function(props) {
   });
 };
 
+SoundRequestSchema.index({ voice: 1, text: 1 });
+
 module.exports = mongoose.model('SoundRequest', SoundRequestSchema);

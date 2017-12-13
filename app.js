@@ -13,11 +13,12 @@ winston.add(winston.transports.Console, { timestamp: true, showLevel: false });
 
 const app = express();
 
+// mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/soundoftext', { useMongoClient: true });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+mongoose.connect('mongodb://localhost/soundoftext', {
+  useMongoClient: true
+});
 
 app.use(cors());
 app.use(logger('dev'));
