@@ -15,7 +15,7 @@ deploy-production:
   script:
     - echo "Deploying to production"
     - scp scripts/production.sh nick@api.soundoftext.com:~/Deployment/soundoftext-api.sh
-    - ssh nick@production.soundoftext.com "/bin/bash/ ~/Deployment/soundoftext-api.sh"
+    - ssh nick@api.soundoftext.com "/bin/bash ~/Deployment/soundoftext-api.sh"
   environment:
     name: production
     url: http://api.soundoftext.com
