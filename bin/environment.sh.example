@@ -1,7 +1,0 @@
-#! /bin/sh
-
-# Change the values and copy this file to 'environment.sh'
-
-export DEBUG=soundoftext-api:*
-export NODE_ENV=development
-export SOT_HOSTNAME=localhost

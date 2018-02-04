@@ -10,26 +10,14 @@ before_script:
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
 
-deploy-staging:
+deploy-production:
   stage: deploy
   script:
-    - echo "Deploying to staging server"
-    - scp bin/staging.sh gitlab@staging.soundoftext.com:~/
-    - ssh gitlab@staging.soundoftext.com "/bin/bash staging.sh"
-  environment:
-    name: staging
-    url: http://staging.soundoftext.com
-  only:
-    - development
-
-deploy_production:
-  stage: deploy
-  script:
-    - echo "Deploying to production server"
-    - scp bin/production.sh gitlab@production.soundoftext.com:~/
-    - ssh gitlab@production.soundoftext.com "/bin/bash production.sh"
+    - echo "Deploying to production"
+    - scp scripts/production.sh nick@api.soundoftext.com:~/Deployment/soundoftext-api.sh
+    - ssh nick@production.soundoftext.com "/bin/bash/ ~/Deployment/soundoftext-api.sh"
   environment:
     name: production
-    url: http://production.soundoftext.com
+    url: http://api.soundoftext.com
   only:
     - master

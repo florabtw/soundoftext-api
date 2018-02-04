@@ -2,6 +2,8 @@
 
 source ~/.nvm/nvm.sh
 
+cd ~/Deployment
+
 rm -rf soundoftext-api
 
 git clone git@gitlab.com:2pool/soundoftext-api.git
@@ -12,4 +14,4 @@ yarn
 
 pm2 delete soundoftext
 
-pm2 start bin/www --name soundoftext
+pm2 start scripts/www --name soundoftext

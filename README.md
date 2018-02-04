@@ -4,6 +4,12 @@ Sound of Text API
 The API for creating audio files generated using TTS technology, in many
 different languages.
 
+# Deployment
+
+1. Setup personal environment (Spawn)
+2. Run setup script (scripts/setup.sh)
+3. Run deployment script (scripts/production.sh)
+
 # Setup
 
 Copy the `bin/environment.sh.example` file to `bin/environment.sh`.
