@@ -14,4 +14,4 @@ yarn
 
 pm2 delete soundoftext
 
-pm2 start scripts/www --name soundoftext
+NODE_ENV=production pm2 start scripts/www --name soundoftext
