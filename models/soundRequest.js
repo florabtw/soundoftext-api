@@ -1,8 +1,10 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-  voices = require('../helpers/voices.js'),
+  languages = require('google-tts-languages'),
   uuid = require('uuid'),
   logger = require('winston');
+
+const languageCodes = languages.map(l => l.code);
 
 const SoundRequestSchema = new Schema({
   created: {
@@ -20,7 +22,7 @@ const SoundRequestSchema = new Schema({
   text: String,
   voice: {
     type: String,
-    enum: voices.keys
+    enum: languageCodes
   }
 });
 
