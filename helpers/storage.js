@@ -47,7 +47,10 @@ function create(soundRequest) {
     })
     .catch(error => {
       logger.error(
-        `Request could not be fulfilled: { text: ${soundRequest.text}, id: ${soundRequest.id} }`
+        `Request could not be fulfilled: {
+           text: ${soundRequest.text},
+           id: ${soundRequest.id}
+        }`
       );
       logger.error(error);
 

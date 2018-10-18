@@ -16,9 +16,12 @@ const app = express();
 // mongoose
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/soundoftext', {
-  useMongoClient: true
-});
+mongoose.connect(
+  'mongodb://localhost/soundoftext',
+  {
+    useMongoClient: true
+  }
+);
 
 app.use(cors());
 app.use(logger('dev'));
