@@ -1,7 +1,7 @@
 const express = require('express'),
   router = express.Router(),
-  config = require('../config/config.js'),
-  stripe = require('stripe')(config.stripeKey);
+  config = require('../config/config'),
+  stripe = require('stripe')(config.stripe.key);
 
 const toDonation = charge => ({
   created: charge.created,

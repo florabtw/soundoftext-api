@@ -3,11 +3,12 @@ const tts = require('google-tts-api'),
   http = require('https'),
   logger = require('winston'),
   URL = require('url').URL,
+  config = require('../config/config'),
   SoundRequest = require('../models/soundRequest.js');
 
 aws.config.update({
-  accessKeyId: 'RE4WB5ESAVWBKBIS7O7E',
-  secretAccessKey: 'AEJnxJpXhF8AKCfsDd/pKqvaI14EfU6iHTJetMaAWGo'
+  accessKeyId: config.storage.accessKeyId,
+  secretAccessKey: config.storage.secretAccessKey
 });
 
 const endpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');

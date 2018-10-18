@@ -1,8 +1,15 @@
-const env = process.env.NODE_ENV || 'development';
+require('dotenv').config();
+
+const env = process.env;
 
 const config = {
-  production: { stripeKey: 'sk_live_2zPqnnWkpgQferm62iUDZGQ7' },
-  development: { stripeKey: 'sk_test_h3Uc9EYgdw54L0qcdniOt6ld' }
+  storage: {
+    accessKeyId: env.STORAGE__ACCESS_KEY_ID,
+    secretAccessKey: env.STORAGE__SECRET_ACCESS_KEY
+  },
+  stripe: {
+    key: env.STRIPE__KEY
+  }
 };
 
-module.exports = config[env];
+module.exports = config;
