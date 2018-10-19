@@ -6,77 +6,28 @@ different languages.
 
 # Deployment
 
+In order to deploy from your local machine:
+
+1. Fill in a `.env` file
+  - Look at `.env.template` to know which variables you need
+  - Use `./scripts/make-dotenv.sh` to create file from environment
+2. Run `./scripts/deploy.sh`
+
+Deployment can also be set up through Travis CI (look at `.travis.yml`).
+
+# Deployment
+
 1. Setup personal environment (Spawn)
 2. Run setup script (scripts/setup.sh)
 3. Run deployment script (scripts/production.sh)
-
-# Setup
-
-Copy the `bin/environment.sh.example` file to `bin/environment.sh`.
-
-Change the variables.
-
-Then source the file.
 
 # Documentation
 
 ## Language Codes
 
-Full list of language codes and values:
-
-| Code  | Language |
-| ----- | -------- |
-| af-ZA | Afrikaans |
-| sq    | Albanian |
-| ar-AE | Arabic |
-| hy    | Armenian |
-| bn    | Bengali |
-| bs    | Bosnian |
-| ca-ES | Catalan |
-| yue-Hant-HK | Chinese, Cantonese (Traditional) |
-| cmn-Hans-CN | Chinese, Mandarin (Simplified) |
-| hr-HR | Croatian |
-| cs-CZ | Czech |
-| da-DK | Danish |
-| nl-NL | Dutch |
-| en-AU | English (Australia) |
-| en-GB | English (United Kingdom) |
-| en-US | English (United States) |
-| eo    | Esperanto |
-| fi-FI | Finnish |
-| fr-FR | French |
-| de-DE | German |
-| el-GR | Greek |
-| hi-IN | Hindi |
-| hu-HU | Hungarian |
-| is-IS | Icelandic |
-| id-ID | Indonesian |
-| it-IT | Italian |
-| ja-JP | Japanese (Japan) |
-| km    | Khmer |
-| ko-KR | Korean |
-| la    | Latin |
-| lv    | Latvian |
-| mk    | Macedonian |
-| ne    | Nepali |
-| nb-NO | Norwegian |
-| pl-PL | Polish |
-| pt-BR | Portuguese |
-| ro-RO | Romanian |
-| ru-RU | Russian |
-| sr-RS | Serbian |
-| si    | Sinhala |
-| sk-SK | Slovak |
-| es-MX | Spanish (Mexico) |
-| es-ES | Spanish (Spain) |
-| sw    | Swahili |
-| sv-SE | Swedish |
-| ta    | Tamil |
-| th-TH | Thai |
-| tr-TR | Turkish |
-| uk-UA | Ukrainian |
-| vi-VN | Vietnamese |
-| cy    | Welsh |
+Language codes come from the
+[google-tts-languages](https://github.com/ncpierson/google-tts-languages)
+repository.
 
 # Reference
 
