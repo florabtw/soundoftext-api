@@ -6,7 +6,7 @@ cd ~/Deployment
 
 rm -rf soundoftext-api
 
-git clone git@gitlab.com:2pool/soundoftext-api.git
+git clone git@github.com:ncpierson/soundoftext-api.git
 
 if [ ! -f "./.env" ]; then
   echo "Can't find .env file!"
