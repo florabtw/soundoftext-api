@@ -4,22 +4,55 @@ Sound of Text API
 The API for creating audio files generated using TTS technology, in many
 different languages.
 
+# Table of Contents
+
+- [Development](#development)
+- [Deployment](#deployment)
+- [User Documentation](#documentation)
+
+# Development
+
+Fill in local environment variables:
+
+```
+$ cp .env.template .env
+$ vim .env # make changes!
+$ source .env
+```
+
+Install dependencies:
+
+```
+$ yarn
+```
+
+Start development server:
+
+```
+$ yarn develop
+```
+
 # Deployment
 
-In order to deploy from your local machine:
+## Versioning
 
-1. Fill in a `.env` file
-  - Look at `.env.template` to know which variables you need
-  - Use `./scripts/make-dotenv.sh` to create file from environment
-2. Run `./scripts/deploy.sh`
+To bump the version and push to docker:
 
-Deployment can also be set up through Travis CI (look at `.travis.yml`).
+```
+$ yarn release
+```
 
-# Deployment
+## Production
 
-1. Setup personal environment (Spawn)
-2. Run setup script (scripts/setup.sh)
-3. Run deployment script (scripts/production.sh)
+Deploying to production server:
+
+```
+$ cp .env.template .env
+$ vim .env # make changes!
+$ set -a
+$ source .env
+$ ./scripts/deploy.sh
+```
 
 # Documentation
 
@@ -64,7 +97,7 @@ IDs look something like this: "416eda90-552e-11e7-9a60-63d42f732a9c"
 
 #### On Failure
 
-An HTTP status code of 400 or 500 with payload:
+An HTTP status code of 400 with payload:
 
 ```json
 {
@@ -104,22 +137,3 @@ Otherwise, you will receive an error:
     "message": "Failed to generate due to..."
 }
 ```
-
-# Future Plans
-
-I would like to support Amazon Polly someday. The request could look like this:
-
-```json
-{
-    "engine": "polly",
-    "data": {
-        "text": "Hello, world",
-        "voice": "Amy",
-        "prosody": {
-            "rate": "x-slow"
-        }
-    }
-}
-```
-
-Prosody options come from SSML.
