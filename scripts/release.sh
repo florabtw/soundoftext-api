@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 USERNAME=ncpierson
 IMAGE=soundoftext-api
@@ -11,7 +11,7 @@ git pull
 
 version=`cat VERSION`
 echo "Current version: $version"
-read -p "New version:" version
+read -p "New version: " version
 
 echo "Using version: $version"
 
