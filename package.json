@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "./scripts/build.sh",
     "develop": "./scripts/dev.sh",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
-    "run": "./scripts/up.sh"
+    "run": "./scripts/up.sh",
+    "release": "./scripts/release.sh"
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",
