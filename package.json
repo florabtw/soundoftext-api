@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "develop": "nodemon scripts/www",
+    "develop": "./scripts/dev.sh",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
-    "start": "node scripts/www"
+    "run": "./scripts/up.sh"
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",

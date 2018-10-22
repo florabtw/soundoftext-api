@@ -8,6 +8,8 @@ const express = require('express'),
   mongoose = require('mongoose'),
   winston = require('winston');
 
+const config = require('./config/config');
+
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, { timestamp: true, showLevel: false });
 
@@ -17,7 +19,7 @@ const app = express();
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  'mongodb://localhost/soundoftext',
+  `mongodb://${config.db.host}/soundoftext`,
   {
     useMongoClient: true
   }
@@ -53,4 +55,4 @@ app.use('/', function(req, res) {
   }
 });
 
-module.exports = app;
+app.listen(5757);
