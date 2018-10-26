@@ -1,5 +1,5 @@
 {
-  "name": "soundoftext",
+  "name": "soundoftext-api",
   "script": "src/app.js",
   "instances": "1",
   "env": {

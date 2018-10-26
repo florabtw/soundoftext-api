@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "build": "./scripts/build.sh",
-    "develop": "./scripts/dev.sh",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
-    "run": "./scripts/up.sh",
-    "release": "./scripts/release.sh"
+    "release": "./scripts/release.sh",
+    "start": "./scripts/start.sh",
+    "stop": "./scripts/stop.sh"
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",
