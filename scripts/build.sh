@@ -5,4 +5,7 @@ set -ex
 USERNAME=ncpierson
 IMAGE=soundoftext-api
 
-docker build -t $USERNAME/$IMAGE:latest .
+docker build                 \
+  --no-cache                 \
+  -t $USERNAME/$IMAGE:latest \
+  .

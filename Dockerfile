@@ -6,7 +6,7 @@ COPY VERSION         .
 COPY package.json    .
 COPY yarn.lock       .
 COPY config/pm2.json .
-COPY src             .
+COPY src             src
 
 RUN yarn install --production --pure-lockfile
 
