@@ -1,8 +1,20 @@
-Sound of Text API
+Sound of Text
 ---
 
-The API for creating audio files generated using TTS technology, in many
-different languages.
+[Sound of Text](https://soundoftext.com) is a website built to help language
+learners convert text into audio using Google's TTS Engine.
+
+This repository contains the Node/Express API server for soundoftext.com. You
+can find the web app repo [here](https://github.com/ncpierson/soundoftext-web).
+
+You can clone this repository locally or pull the **docker image**:
+
+```
+docker pull soundoftext-api
+```
+
+This image requires environment variables, explained in the
+[development](#manually) section below.
 
 # Table of Contents
 
@@ -12,46 +24,64 @@ different languages.
 
 # Development
 
-Fill in local environment variables:
+## Prerequisites
+
+You will need to fill in `config/development.env`.
+
+### Reveal Secrets
+
+One way of getting these variables is if you are part of git secret in this
+project. If so, then you can reveal the secrets as long as you have access to
+your private gpg key:
 
 ```
-$ cp .env.template .env
-$ vim .env # make changes!
-$ source .env
+git secret reveal
 ```
+
+### Manually
+
+You can fill in the `config/example.env` file manually:
+
+```
+cp config/example.env config/development.env
+vim config/development.env # make changes!
+```
+
+Explanation:
+
+- `DB__HOST`: hostname where mongodb is running
+- `STORAGE__ACCESS_KEY_ID`: access key id for AWS or Digital Ocean Spaces
+- `STORAGE__SECRET_ACCESS_KEY`: secret value for the access key id
+- `STRIPE__KEY`: secret stripe api key
+
+## Run locally
 
 Install dependencies:
 
 ```
-$ yarn
+yarn
 ```
 
 Start development server:
 
 ```
-$ yarn develop
+yarn start
+```
+
+You can now interact with the server at http://localhost:5757
+
+Stop development server:
+
+```
+yarn stop
 ```
 
 # Deployment
-
-## Versioning
 
 To bump the version and push to docker:
 
 ```
 $ yarn release
-```
-
-## Production
-
-Deploying to production server:
-
-```
-$ cp .env.template .env
-$ vim .env # make changes!
-$ set -a
-$ source .env
-$ ./scripts/deploy.sh
 ```
 
 # Documentation
