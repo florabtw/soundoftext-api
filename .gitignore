@@ -28,3 +28,7 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+.gitsecret/keys/random_seed
+config/development.env
+config/production.env

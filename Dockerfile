@@ -2,11 +2,11 @@ FROM keymetrics/pm2:8
 
 WORKDIR /usr/src/app
 
-COPY VERSION .
-COPY package.json .
-COPY yarn.lock .
-COPY pm2.json .
-COPY src src
+COPY VERSION         .
+COPY package.json    .
+COPY yarn.lock       .
+COPY config/pm2.json .
+COPY src             .
 
 RUN yarn install --production --pure-lockfile
 

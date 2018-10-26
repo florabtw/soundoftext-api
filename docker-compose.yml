@@ -5,11 +5,7 @@ services:
     container_name: soundoftext-api
     depends_on:
       - mongo
-    environment:
-      - DB__HOST
-      - STORAGE__ACCESS_KEY_ID
-      - STORAGE__SECRET_ACCESS_KEY
-      - STRIPE__KEY
+    env_file: config/development.env
     image: ncpierson/soundoftext-api:latest
     ports:
       - "5757:5757"
