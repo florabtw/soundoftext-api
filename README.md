@@ -10,7 +10,7 @@ can find the web app repo [here](https://github.com/ncpierson/soundoftext-web).
 You can clone this repository locally or pull the **docker image**:
 
 ```
-docker pull soundoftext-api
+docker pull ncpierson/soundoftext-api
 ```
 
 This image requires environment variables, explained in the
@@ -56,11 +56,8 @@ Explanation:
 
 ## Run locally
 
-Install dependencies:
-
-```
-yarn
-```
+The development server runs completely in docker, so no need to install
+dependencies locally.
 
 Start development server:
 
@@ -81,7 +78,7 @@ yarn stop
 To bump the version and push to docker:
 
 ```
-$ yarn release
+yarn release
 ```
 
 # Documentation
