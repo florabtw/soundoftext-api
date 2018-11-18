@@ -75,7 +75,7 @@ yarn stop
 
 # Deployment
 
-To bump the version and push to docker:
+To bump the version and push to docker hub:
 
 ```
 yarn release

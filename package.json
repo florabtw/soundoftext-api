@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "./scripts/build.sh",
+    "deploy": "./scripts/deploy.sh",
     "postversion": "./scripts/postversion.sh",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
