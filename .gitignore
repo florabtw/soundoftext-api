@@ -33,3 +33,4 @@ npm-debug.log
 config/development.env
 config/production.env
 config/deploy.gpg
+deploy_key
