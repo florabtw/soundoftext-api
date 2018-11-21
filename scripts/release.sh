@@ -2,6 +2,6 @@
 
 set -e
 
-# yarn test
 yarn version --patch
+
 yarn deploy

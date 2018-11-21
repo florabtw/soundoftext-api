@@ -7,7 +7,10 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_829e1da235e2_key -iv $encrypted_829e1da235e2_iv
     -in config/deploy.gpg.enc -out config/deploy.gpg -d
   - ./scripts/decrypt.sh
-install:
-  - yarn
-script:
-  - yarn test
+install: yarn
+script: yarn test
+deploy:
+  provider: script
+  script: yarn release
+  on:
+    branch: master
