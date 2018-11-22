@@ -1,6 +1,8 @@
 Sound of Text
 ---
 
+[![Build Status](https://travis-ci.com/ncpierson/soundoftext-api.svg?branch=master)](https://travis-ci.com/ncpierson/soundoftext-api)
+
 [Sound of Text](https://soundoftext.com) is a website built to help language
 learners convert text into audio using Google's TTS Engine.
 
@@ -20,7 +22,7 @@ This image requires environment variables, explained in the
 
 - [Development](#development)
 - [Deployment](#deployment)
-- [User Documentation](#documentation)
+- [API Documentation](#documentation)
 
 # Development
 
@@ -75,10 +77,24 @@ yarn stop
 
 # Deployment
 
-To bump the version and push to docker hub:
+## Continuous Deployment
+
+This application is continuously deployed to Docker Hub using Travis CI.
+[View latest build](https://travis-ci.com/ncpierson/soundoftext-api)
+
+## Manual Deployment
+
+You might want to deploy manually if you want to skip tests or do a major/minor
+version bump.
+
+As a prerequisite, you will need to have the secret files revealed, or to have
+filled them in manually.
+
+To do a version bump and deployment:
 
 ```
-yarn release
+yarn version --patch # other options: --minor, --major
+yarn deploy
 ```
 
 # Documentation
