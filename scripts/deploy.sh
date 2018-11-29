@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 USERNAME=ncpierson
 IMAGE=soundoftext-api
 VERSION=`cat VERSION`

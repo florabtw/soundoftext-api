@@ -1,4 +1,4 @@
-FROM keymetrics/pm2:8
+FROM keymetrics/pm2:10-alpine
 
 WORKDIR /usr/src/app
 
