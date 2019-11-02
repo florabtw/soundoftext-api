@@ -1,29 +1,25 @@
-const express = require('express'),
-  path = require('path'),
-  favicon = require('serve-favicon'),
-  logger = require('morgan'),
-  cookieParser = require('cookie-parser'),
-  bodyParser = require('body-parser'),
-  cors = require('cors'),
-  mongoose = require('mongoose'),
-  winston = require('winston');
+const Knex = require('knex');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const express = require('express');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const mysql = require('mysql');
+const path = require('path');
+const winston = require('winston');
+const { Model } = require('objection');
 
 const config = require('./config/config');
+const knexConfig = require('../knexfile');
 
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, { timestamp: true, showLevel: false });
 
+var knex = Knex(knexConfig.production);
+Model.knex(knex);
+
 const app = express();
-
-// mongoose
-mongoose.Promise = global.Promise;
-
-mongoose.connect(
-  `mongodb://${config.db.host}/soundoftext`,
-  {
-    useMongoClient: true
-  }
-);
 
 app.use(cors());
 app.use(logger('dev'));

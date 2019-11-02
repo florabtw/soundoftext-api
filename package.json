@@ -3,14 +3,10 @@
   "version": "1.0.6",
   "private": true,
   "scripts": {
-    "build": "./scripts/build.sh",
-    "deploy": "./scripts/deploy.sh",
+    "knex": "node -r esm node_modules/.bin/knex",
     "postversion": "./scripts/postversion.sh",
     "precommit": "prettier -l \"**/*.js\"",
-    "prettier": "prettier --write \"**/*.js\"",
-    "release": "./scripts/release.sh",
-    "start": "./scripts/start.sh",
-    "stop": "./scripts/stop.sh"
+    "prettier": "prettier --write \"**/*.js\""
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",
@@ -19,12 +15,15 @@
     "cors": "^2.8.4",
     "debug": "~2.6.9",
     "dotenv": "^6.1.0",
+    "esm": "^3.2.25",
     "express": "~4.15.5",
     "google-tts-api": "ncpierson/google-tts",
     "google-tts-languages": "^1.0.0",
-    "mongoose": "^4.12.3",
+    "knex": "^0.20.1",
     "morgan": "~1.9.0",
+    "mysql": "^2.17.1",
     "nodemon": "^1.12.1",
+    "objection": "^1.6.11",
     "serve-favicon": "~2.4.5",
     "stripe": "^5.3.0",
     "uuid": "^3.1.0",

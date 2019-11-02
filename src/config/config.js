@@ -4,7 +4,10 @@ const env = process.env;
 
 const config = {
   db: {
-    host: env.DB__HOST
+    database: env.MYSQL_DATABASE,
+    host: env.DB__HOST,
+    password: env.MYSQL_PASSWORD,
+    user: env.MYSQL_USER
   },
   storage: {
     accessKeyId: env.STORAGE__ACCESS_KEY_ID,

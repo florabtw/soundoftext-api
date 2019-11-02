@@ -28,15 +28,19 @@ down () {
 }
 
 up () {
+  local OPTIND
+
   docker-compose          \
     -f docker-compose.yml \
     up                    \
-    --detach
+    --detach              \
+    $@
 }
 
 # Begin Script
 
 COMMAND=${1}
+shift
 
 case "$COMMAND" in
   build) build $@;;
@@ -45,5 +49,5 @@ case "$COMMAND" in
     deploy
     ;;
   down) down;;
-  up) up;;
+  up) up $@;;
 esac
