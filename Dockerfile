@@ -2,7 +2,7 @@ FROM keymetrics/pm2:10-alpine
 
 WORKDIR /usr/src/app
 
-COPY VERSION         .
+COPY .version        .
 COPY package.json    .
 COPY yarn.lock       .
 COPY config/pm2.json .
