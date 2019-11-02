@@ -1,8 +1,6 @@
 Sound of Text
 ---
 
-[![Build Status](https://travis-ci.com/ncpierson/soundoftext-api.svg?branch=master)](https://travis-ci.com/ncpierson/soundoftext-api)
-
 [Sound of Text](https://soundoftext.com) is a website built to help language
 learners convert text into audio using Google's TTS Engine.
 
@@ -76,11 +74,6 @@ yarn stop
 ```
 
 # Deployment
-
-## Continuous Deployment
-
-This application is continuously deployed to Docker Hub using Travis CI.
-[View latest build](https://travis-ci.com/ncpierson/soundoftext-api)
 
 ## Manual Deployment
 

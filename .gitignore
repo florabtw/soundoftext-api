@@ -32,5 +32,3 @@ npm-debug.log
 .gitsecret/keys/random_seed
 config/development.env
 config/production.env
-config/deploy.gpg
-deploy_key
