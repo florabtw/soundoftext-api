@@ -4,10 +4,10 @@ const env = process.env;
 
 const config = {
   db: {
-    database: env.MYSQL_DATABASE,
+    database: env.POSTGRES_DB,
     host: env.DB__HOST,
-    password: env.MYSQL_PASSWORD,
-    user: env.MYSQL_USER
+    password: env.POSTGRES_PASSWORD,
+    user: env.POSTGRES_USER
   },
   storage: {
     accessKeyId: env.STORAGE__ACCESS_KEY_ID,

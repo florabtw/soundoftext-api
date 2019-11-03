@@ -5,7 +5,6 @@ const cors = require('cors');
 const express = require('express');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const mysql = require('mysql');
 const path = require('path');
 const winston = require('winston');
 const { Model } = require('objection');
