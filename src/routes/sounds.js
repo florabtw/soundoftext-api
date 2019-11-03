@@ -1,9 +1,10 @@
-const express = require('express'),
-  router = express.Router(),
-  SoundRequest = require('../models/soundRequest.js'),
-  config = require('../config/config'),
-  storage = require('../helpers/storage.js'),
-  sanitize = require('../helpers/sanitize.js');
+const express = require('express');
+const router = express.Router();
+
+const { Request } = require('../models/Request.js');
+const config = require('../config/config');
+const sanitize = require('../helpers/sanitize.js');
+const storage = require('../helpers/storage.js');
 
 router.post('/', function(req, res, next) {
   if (!req.body.data) {
@@ -25,11 +26,11 @@ router.post('/', function(req, res, next) {
   const safeText = sanitize(data.text);
   const safeVoice = sanitize(data.voice);
 
-  SoundRequest.findOrCreate({ text: safeText, voice: safeVoice })
-    .then(soundRequest => {
-      res.json({ success: true, id: soundRequest.id });
+  Request.findOrCreate({ text: safeText, voice: safeVoice })
+    .then(request => {
+      res.json({ success: true, id: request.id });
 
-      storage.createSound(soundRequest);
+      storage.createSound(request);
     })
     .catch(error => {
       console.error(error);
@@ -55,10 +56,10 @@ async function lookupSound(soundId) {
   const publicUrl = await storage.lookupSound(soundId);
 
   if (publicUrl) {
-    return { status: SoundRequest.DONE, location: publicUrl };
+    return { status: Request.DONE, location: publicUrl };
   }
 
-  const soundRequest = await SoundRequest.findById(soundId);
+  const soundRequest = await Request.query().findById(soundId);
 
   if (soundRequest) {
     const { status, message } = soundRequest;

@@ -1,10 +1,11 @@
-const tts = require('google-tts-api'),
-  aws = require('aws-sdk'), // actually digitalocean spaces
-  http = require('https'),
-  logger = require('winston'),
-  URL = require('url').URL,
-  config = require('../config/config'),
-  SoundRequest = require('../models/soundRequest.js');
+const URL = require('url').URL;
+const aws = require('aws-sdk'); // actually digitalocean spaces
+const http = require('https');
+const logger = require('winston');
+const tts = require('google-tts-api');
+
+const config = require('../config/config');
+const { Request } = require('../models/Request');
 
 aws.config.update({
   accessKeyId: config.storage.accessKeyId,
@@ -22,7 +23,7 @@ const bucket = new aws.S3({
  * Create Sound file from request.
  * Will not continue if request has already been fulfilled.
  *
- * Returns Null
+ * Returns null
  */
 function createSound(soundRequest) {
   const fileName = `${soundRequest.id}.mp3`;
@@ -38,13 +39,8 @@ function createSound(soundRequest) {
 
 function create(soundRequest) {
   return download(soundRequest)
-    .then(stream => {
-      return upload(stream, soundRequest);
-    })
-    .then(() => {
-      soundRequest.set({ status: SoundRequest.DONE });
-      return soundRequest.save();
-    })
+    .then(stream => upload(stream, soundRequest))
+    .then(() => soundRequest.$query().patch({ status: Request.DONE }))
     .catch(error => {
       logger.error(
         `Request could not be fulfilled: {
@@ -54,12 +50,10 @@ function create(soundRequest) {
       );
       logger.error(error);
 
-      soundRequest.set({
+      soundRequest.$query().patch({
         message: error.message,
-        status: SoundRequest.ERROR
+        status: Request.ERROR
       });
-
-      soundRequest.save();
     });
 }
 
