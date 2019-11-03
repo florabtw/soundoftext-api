@@ -1,4 +1,3 @@
-const uuid = require('uuid');
 const languages = require('google-tts-languages');
 
 const languageCodes = languages.map(l => l.code);

@@ -1,4 +1,6 @@
-FROM keymetrics/pm2:10-alpine
+FROM node:12-alpine
+
+RUN yarn global add pm2
 
 WORKDIR /usr/src/app
 
