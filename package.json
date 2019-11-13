@@ -10,7 +10,9 @@
     "prettier": "prettier --write \"**/*.js\"",
     "release": "./scripts/release.sh",
     "start": "./scripts/docker.sh up",
-    "stop": "./scripts/docker.sh down"
+    "stop": "./scripts/docker.sh down",
+    "test": "yarn test:acceptance",
+    "test:acceptance": "./scripts/test.sh"
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",
@@ -31,6 +33,7 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
+    "ava": "1.4.1",
     "husky": "^0.14.3",
     "prettier": "^1.14.3"
   }
