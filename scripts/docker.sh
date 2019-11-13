@@ -24,26 +24,29 @@ deploy () {
 down () {
   docker-compose          \
     -f docker-compose.yml \
-    down
+    down                  \
+    $@
 }
 
 up () {
   docker-compose          \
     -f docker-compose.yml \
     up                    \
-    --detach
+    --detach              \
+    $@
 }
 
 # Begin Script
 
 COMMAND=${1}
+shift
 
 case "$COMMAND" in
-  build) build $@;;
+  build) build;;
   deploy)
     build
     deploy
     ;;
-  down) down;;
-  up) up;;
+  down) down $@;;
+  up) up $@;;
 esac

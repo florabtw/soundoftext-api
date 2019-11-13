@@ -9,8 +9,8 @@
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
     "release": "./scripts/release.sh",
-    "start": "./scripts/start.sh",
-    "stop": "./scripts/stop.sh"
+    "start": "./scripts/docker.sh up",
+    "stop": "./scripts/docker.sh down"
   },
   "dependencies": {
     "aws-sdk": "^2.145.0",

@@ -1,6 +1,7 @@
 version: "3"
 services:
   default:
+    build: ./
     command: pm2-dev start pm2.json
     container_name: soundoftext-api
     depends_on:
