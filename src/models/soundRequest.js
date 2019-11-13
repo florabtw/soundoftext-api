@@ -17,7 +17,7 @@ const SoundRequestSchema = new Schema({
   status: {
     type: String,
     enum: ['Pending', 'Done', 'Error'],
-    default: ['Pending']
+    default: 'Pending'
   },
   text: String,
   voice: {
