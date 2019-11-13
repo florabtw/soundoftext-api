@@ -3,8 +3,8 @@
   "version": "1.0.8",
   "private": true,
   "scripts": {
-    "build": "./scripts/build.sh",
-    "deploy": "./scripts/deploy.sh",
+    "build": "./scripts/docker.sh build",
+    "deploy": "./scripts/docker.sh deploy",
     "postversion": "./scripts/postversion.sh",
     "precommit": "prettier -l \"**/*.js\"",
     "prettier": "prettier --write \"**/*.js\"",
