@@ -49,15 +49,14 @@ vim config/development.env # make changes!
 
 Explanation:
 
-- `DB__HOST`: hostname where mongodb is running
+- `DB__HOST`: hostname where mongodb is running. If running locally, you can set this to "soundoftext-db"
 - `STORAGE__ACCESS_KEY_ID`: access key id for AWS or Digital Ocean Spaces
 - `STORAGE__SECRET_ACCESS_KEY`: secret value for the access key id
 - `STRIPE__KEY`: secret stripe api key
 
 ## Run locally
 
-The development server runs completely in docker, so no need to install
-dependencies locally.
+The development server runs completely in docker, so no need to install dependencies locally. Fill in the configuration details as above.
 
 Start development server:
 
@@ -111,7 +110,7 @@ repository.
     "engine": "google",
     "data": {
         "text": "Hello, world",
-        "language": "en"
+        "voice": "en-US"
     }
 }
 ```
