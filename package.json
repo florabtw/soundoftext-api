@@ -1,6 +1,6 @@
 {
   "name": "soundoftext-api",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": true,
   "scripts": {
     "build": "./scripts/docker.sh build",
