@@ -1,10 +1,11 @@
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  languages = require('google-tts-languages'),
-  uuid = require('uuid'),
-  logger = require('winston');
+const tts = require('google-translate-tts');
+const logger = require('winston');
+const mongoose = require('mongoose');
+const uuid = require('uuid');
 
-const languageCodes = languages.map(l => l.code);
+const Schema = mongoose.Schema;
+
+const languageCodes = tts.voices.map(l => l.code);
 
 const SoundRequestSchema = new Schema({
   created: {

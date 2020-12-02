@@ -1,10 +1,10 @@
-const tts = require('google-tts-api'),
-  aws = require('aws-sdk'), // actually digitalocean spaces
-  http = require('https'),
-  logger = require('winston'),
-  URL = require('url').URL,
-  config = require('../config/config'),
-  SoundRequest = require('../models/soundRequest.js');
+const SoundRequest = require('../models/soundRequest.js');
+const URL = require('url').URL;
+const aws = require('aws-sdk'); // actually digitalocean spaces
+const config = require('../config/config');
+const http = require('https');
+const logger = require('winston');
+const tts = require('google-translate-tts');
 
 aws.config.update({
   accessKeyId: config.storage.accessKeyId,
@@ -37,7 +37,10 @@ function createSound(soundRequest) {
 }
 
 function create(soundRequest) {
-  return download(soundRequest)
+  const { text, voice } = soundRequest;
+
+  return tts
+    .synthesize({ text, voice })
     .then(stream => {
       return upload(stream, soundRequest);
     })
@@ -64,16 +67,6 @@ function create(soundRequest) {
 }
 
 const downloadHeaders = { 'User-Agent': 'SoundOfTextBot (soundoftext.com)' };
-
-/**
- * returns Promise<Stream>
- */
-async function download(soundRequest) {
-  const url = await tts(soundRequest.text, soundRequest.voice);
-  const stream = await downloadFile(url);
-
-  return stream;
-}
 
 function downloadFile(url) {
   const { host, pathname, search } = new URL(url);
