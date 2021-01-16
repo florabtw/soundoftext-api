@@ -1645,10 +1645,10 @@ globby@^7.1.1:
     pify "^3.0.0"
     slash "^1.0.0"
 
-google-translate-tts@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/google-translate-tts/-/google-translate-tts-0.1.0.tgz#e64b7e742f869a75a7d26d31fc398f7124e42719"
-  integrity sha512-2G/7C8L1QIPc2vqX8/otjKoREkCzHcbO65sGlcfTPIxzRYxwdTKJezTqPYjZ46VQFgwI+39NIxBH3Ww0ScibCg==
+google-translate-tts@0.4.0-dev:
+  version "0.4.0-dev"
+  resolved "https://registry.yarnpkg.com/google-translate-tts/-/google-translate-tts-0.4.0-dev.tgz#6e557e955add01d7341dc8009dc3843ec1e9b5de"
+  integrity sha512-UioovR3V/17rDBMVFkKTXcJPWSTwjxcqe9GKhmZqqwVlnUThY4SKQ5NJdmEuIGzlzj0apHGPQRShDz7I347+vw==
 
 got@^6.7.1:
   version "6.7.1"

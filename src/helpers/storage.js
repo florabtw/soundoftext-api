@@ -40,7 +40,7 @@ function create(soundRequest) {
   const { text, voice } = soundRequest;
 
   return tts
-    .synthesize({ text, voice })
+    .synthesize({ text, voice, useCookies: true })
     .then(stream => {
       return upload(stream, soundRequest);
     })
