@@ -4,7 +4,7 @@ const aws = require('aws-sdk'); // actually digitalocean spaces
 const config = require('../config/config');
 const http = require('https');
 const logger = require('winston');
-const tts = require('google-translate-tts');
+const tts = require('google-tts-api');
 
 aws.config.update({
   accessKeyId: config.storage.accessKeyId,
@@ -37,10 +37,7 @@ function createSound(soundRequest) {
 }
 
 function create(soundRequest) {
-  const { text, voice } = soundRequest;
-
-  return tts
-    .synthesize({ text, voice, useCookies: true })
+  return download(soundRequest)
     .then(stream => {
       return upload(stream, soundRequest);
     })
@@ -66,12 +63,21 @@ function create(soundRequest) {
     });
 }
 
-const downloadHeaders = { 'User-Agent': 'SoundOfTextBot (soundoftext.com)' };
+/**
+ * returns Promise<Stream>
+ */
+const download = async ({ text, voice }) => {
+  const url = await tts.getAudioUrl(text, { lang: voice });
+  return downloadFile(url);
+};
 
 function downloadFile(url) {
   const { host, pathname, search } = new URL(url);
 
   const options = {
+    headers: {
+      'User-Agent': 'SoundOfTextBot (soundoftext.com)'
+    },
     host: host,
     path: pathname + search,
     timeout: 10000

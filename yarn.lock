@@ -610,6 +610,13 @@ aws-sdk@^2.145.0:
     uuid "^3.3.2"
     xml2js "^0.4.19"
 
+axios@^0.21.0:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-plugin-dynamic-import-node@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.0.tgz#f00f507bdaa3c3e3ff6e7e5e98d90a7acab96f7f"
@@ -1514,6 +1521,11 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+follow-redirects@^1.10.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -1649,6 +1661,13 @@ google-translate-tts@0.4.0-dev:
   version "0.4.0-dev"
   resolved "https://registry.yarnpkg.com/google-translate-tts/-/google-translate-tts-0.4.0-dev.tgz#6e557e955add01d7341dc8009dc3843ec1e9b5de"
   integrity sha512-UioovR3V/17rDBMVFkKTXcJPWSTwjxcqe9GKhmZqqwVlnUThY4SKQ5NJdmEuIGzlzj0apHGPQRShDz7I347+vw==
+
+google-tts-api@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/google-tts-api/-/google-tts-api-2.0.1.tgz#f90e3a7283c47effd6b349b125d37c6f88d822ea"
+  integrity sha512-gFYSMusgxU7ad6+lTjG7xuFajIK6LxlXXkFMKQCZTzzEbDwXz4n3Ljc57c4PCxP/PvOZ4tJCgRGWiPJaAyToLg==
+  dependencies:
+    axios "^0.21.0"
 
 got@^6.7.1:
   version "6.7.1"
